@@ -19,3 +19,17 @@ A simple 1-screen Flutter application for taking and syncing notes using Firebas
 
 ---
 
+## 🛠 Setup Instructions
+
+1. **Clone the repo**
+```bash
+git clone https://github.com/ZeeshanOfficial97/flutter_task.git
+
+2. **Install Flutter Sdk**
+flutter 3.27.4
+
+3. **Install dependencies**
+flutter pub get
+
+4. **Run the app**
+flutter run  

@@ -67,11 +67,32 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           tileColor: Colors.deepPurple.shade100,
                           title: Text(note['content'] ?? ''),
-                          onLongPress: () {
-                            notesProvider.deleteNote(note.id);
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('Note deleted')),
+                          onLongPress: () async {
+                            final shouldDelete = await showDialog<bool>(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: const Text('Delete Note'),
+                                content: const Text('Are you sure you want to delete this note?'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.of(context).pop(false),
+                                    child: const Text('Cancel'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () => Navigator.of(context).pop(true),
+                                    child: const Text('Delete', style: TextStyle(color: Colors.red)),
+                                  ),
+                                ],
+                              ),
                             );
+                            if (shouldDelete == true) {
+                              notesProvider.deleteNote(note.id);
+                              if (context.mounted) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('Note deleted')),
+                                );
+                              }
+                            }
                           },
                         ),
                       );
