@@ -19,7 +19,3 @@ A simple 1-screen Flutter application for taking and syncing notes using Firebas
 
 ---
 
-## 🛠️ Setup Instructions
-
-### 1. Clone the Repository
-
